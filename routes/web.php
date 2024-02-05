@@ -31,5 +31,6 @@ Route::middleware('auth')->group(function () {
 Route::get('/audit', 'App\Http\Controllers\PerencanaanAuditController@index')->middleware(['auth', 'verified'])->name('home');
 Route::get('/audit/tambah','App\Http\Controllers\PerencanaanAuditController@create')->middleware(['auth', 'verified'])->name('tambah');
 Route::get('/audit/detail/{id}','App\Http\Controllers\PerencanaanAuditController@detail')->middleware(['auth', 'verified'])->name('detail');
+Route::post('/audit/store','App\Http\Controllers\PerencanaanAuditController@store')->middleware(['auth', 'verified'])->name('tambah2');
 
 require __DIR__.'/auth.php';
