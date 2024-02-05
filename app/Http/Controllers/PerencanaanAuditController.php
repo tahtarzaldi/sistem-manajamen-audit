@@ -27,7 +27,12 @@ class PerencanaanAuditController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user();
+        return view('audit/tambah',
+            [
+                'user' => $user,
+            ]
+        );
     }
 
     /**
@@ -35,7 +40,20 @@ class PerencanaanAuditController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // insert data ke table pegawai
+        DB::table('perencanaan_audit')->insert([
+            'tujuan_audit' => $request->tujuan_audit,
+            'ruang_lingkup' => $request->ruang_lingkup,
+            'tim_audit' => $request->tim_audit,
+            'tgl_mulai' => date('Y-m-d', strtotime($request->tgl_mulai)),
+            'tgl_selesai' => date('Y-m-d', strtotime($request->tgl_selesai)),
+            'sumber_daya' => $request->sumber_daya,
+            'teknik_audit' => $request->teknik_audit,
+            'status' => $request->status,
+            'catatan' => $request->catatan,
+        ]);
+        // alihkan halaman ke halaman pegawai
+        return redirect('/audit');
     }
 
     /**
