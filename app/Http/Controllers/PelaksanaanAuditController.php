@@ -13,7 +13,17 @@ class PelaksanaanAuditController extends Controller
      */
     public function index()
     {
-        //
+        //$pelaksanaan = PelaksanaanAudit::all();
+        $user = auth()->user();
+        $pelaksanaan = PelaksanaanAudit::join('perencanaan_audit', 'perencanaan_audit.id', '=', 'pelaksanaan_audit.id_perencanaan')
+             ->select('pelaksanaan_audit.*', 'perencanaan_audit.tujuan_audit as tujuan')
+             ->get();
+        return view('pelaksanaan/pelaksanaan',
+            [
+                'user' => $user,
+                'pelaksanaan' => $pelaksanaan,
+            ]
+        );
     }
 
     /**
