@@ -62,9 +62,17 @@ class PerencanaanAuditController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(PerencanaanAudit $perencanaanAudit)
+    public function detail($id)
     {
-        //
+        // mengambil data pegawai berdasarkan id yang dipilih
+        $audit = DB::table('perencanaan_audit')->where('id',$id)->get();
+        $user = auth()->user();
+        
+        // passing data pegawai yang didapat ke view edit.blade.php
+        return view('audit/detail',[
+            'audit' => $audit,
+            'user' => $user
+        ]);
     }
 
     /**
