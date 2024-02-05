@@ -41,5 +41,6 @@ Route::get('/pelaksanaan/tambah','App\Http\Controllers\PelaksanaanAuditControlle
 Route::post('/pelaksanaan/store','App\Http\Controllers\PelaksanaanAuditController@store')->middleware(['auth', 'verified'])->name('tambah2');
 Route::get('/pelaksanaan/edit/{id}','App\Http\Controllers\PelaksanaanAuditController@edit')->middleware(['auth', 'verified'])->name('edit');
 Route::post('/pelaksanaan/update','App\Http\Controllers\PelaksanaanAuditController@update')->middleware(['auth', 'verified'])->name('edit2');
+Route::get('/pelaksanaan/hapus/{id}','App\Http\Controllers\PelaksanaanAuditController@destroy')->middleware(['auth', 'verified'])->name('hapus');
 
 require __DIR__.'/auth.php';
