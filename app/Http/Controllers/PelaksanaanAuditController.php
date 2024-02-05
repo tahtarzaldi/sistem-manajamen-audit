@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\PelaksanaanAudit;
+use App\Models\PerencanaanAudit;
 use App\Http\Requests\StorePelaksanaanAuditRequest;
 use App\Http\Requests\UpdatePelaksanaanAuditRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class PelaksanaanAuditController extends Controller
 {
@@ -31,7 +35,15 @@ class PelaksanaanAuditController extends Controller
      */
     public function create()
     {
-        //
+        $user = auth()->user();
+        $perencanaan = PerencanaanAudit::all();
+
+        return view('pelaksanaan/tambah',
+            [
+                'user' => $user,
+                'perencanaan' => $perencanaan,
+            ]
+        );
     }
 
     /**
@@ -39,7 +51,15 @@ class PelaksanaanAuditController extends Controller
      */
     public function store(StorePelaksanaanAuditRequest $request)
     {
-        //
+        // insert data ke table pegawai
+        DB::table('pelaksanaan_audit')->insert([
+            'id_perencanaan' => $request->id_perencanaan,
+            'hasil_pemeriksaan' => $request->hasil_pemeriksaan,
+            'tgl_pemeriksanaan' => date('Y-m-d', strtotime(Carbon::today())),
+            'catatan' => $request->catatan,
+        ]);
+        // alihkan halaman ke halaman pegawai
+        return redirect('/pelaksanaan');
     }
 
     /**
