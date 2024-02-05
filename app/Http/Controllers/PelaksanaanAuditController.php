@@ -73,9 +73,19 @@ class PelaksanaanAuditController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PelaksanaanAudit $pelaksanaanAudit)
+    public function edit($id)
     {
-        //
+        // mengambil data pegawai berdasarkan id yang dipilih
+        $pelaksanaan = DB::table('pelaksanaan_audit')->where('id',$id)->get();
+        $perencanaan = PerencanaanAudit::all();
+        $user = auth()->user();
+        
+        // passing data pegawai yang didapat ke view edit.blade.php
+        return view('pelaksanaan/edit',[
+            'pelaksanaan' => $pelaksanaan,
+            'perencanaan' => $perencanaan,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -83,7 +93,14 @@ class PelaksanaanAuditController extends Controller
      */
     public function update(UpdatePelaksanaanAuditRequest $request, PelaksanaanAudit $pelaksanaanAudit)
     {
-        //
+        DB::table('pelaksanaan_audit')->where('id',$request->id)->update([
+            'id_perencanaan' => $request->id_perencanaan,
+            'hasil_pemeriksaan' => $request->hasil_pemeriksaan,
+            'tgl_pemeriksanaan' => date('Y-m-d', strtotime(Carbon::today())),
+            'catatan' => $request->catatan,
+        ]);
+        // alihkan halaman ke halaman pegawai
+        return redirect('/pelaksanaan');
     }
 
     /**
