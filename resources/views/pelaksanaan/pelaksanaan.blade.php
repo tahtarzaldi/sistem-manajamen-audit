@@ -15,11 +15,11 @@
   <main id="main" class="main">
 
     <div class="pagetitle">
-      <h1>Audit</h1>
+      <h1>Pelaksanaan Audit</h1>
       <nav>
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Audit</li>
+          <li class="breadcrumb-item active">Pelaksanaan Audit</li>
         </ol>
       </nav>
     </div><!-- End Page Title -->
