@@ -114,8 +114,12 @@ class PerencanaanAuditController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(PerencanaanAudit $perencanaanAudit)
+    public function destroy($id)
     {
-        //
+        // menghapus data pegawai berdasarkan id yang dipilih
+        DB::table('perencanaan_audit')->where('id',$id)->delete();
+            
+        // alihkan halaman ke halaman pegawai
+        return redirect('/audit');
     }
 }
