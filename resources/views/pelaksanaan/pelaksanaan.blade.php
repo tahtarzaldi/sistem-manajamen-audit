@@ -55,7 +55,7 @@
                       <tr>
                         <th scope="row">{{ $index + 1 }}</th>
                         <td>{{ $a->tujuan }}</td>
-                        <td>{{ date('d/m/Y', strtotime($a->tgl_pemeriksaan)) }}</td>
+                        <td>{{ date('d/m/Y', strtotime($a->tgl_pemeriksanaan)) }}</td>
                         <td>{{ $a->hasil_pemeriksaan }}</td>
                         <td>{{ $a->catatan }}</td>
                         <td style="text-align: center">

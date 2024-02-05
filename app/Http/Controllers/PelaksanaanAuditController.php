@@ -55,7 +55,7 @@ class PelaksanaanAuditController extends Controller
         DB::table('pelaksanaan_audit')->insert([
             'id_perencanaan' => $request->id_perencanaan,
             'hasil_pemeriksaan' => $request->hasil_pemeriksaan,
-            'tgl_pemeriksanaan' => date('Y-m-d', strtotime(Carbon::today())),
+            'tgl_pemeriksanaan' => date("Y-m-d"),
             'catatan' => $request->catatan,
         ]);
         // alihkan halaman ke halaman pegawai
@@ -96,7 +96,7 @@ class PelaksanaanAuditController extends Controller
         DB::table('pelaksanaan_audit')->where('id',$request->id)->update([
             'id_perencanaan' => $request->id_perencanaan,
             'hasil_pemeriksaan' => $request->hasil_pemeriksaan,
-            'tgl_pemeriksanaan' => date('Y-m-d', strtotime(Carbon::today())),
+            'tgl_pemeriksanaan' => date("Y-m-d"),
             'catatan' => $request->catatan,
         ]);
         // alihkan halaman ke halaman pegawai
