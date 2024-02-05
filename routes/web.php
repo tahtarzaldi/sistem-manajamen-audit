@@ -39,5 +39,7 @@ Route::get('/audit/hapus/{id}','App\Http\Controllers\PerencanaanAuditController@
 Route::get('/pelaksanaan', 'App\Http\Controllers\PelaksanaanAuditController@index')->middleware(['auth', 'verified'])->name('home');
 Route::get('/pelaksanaan/tambah','App\Http\Controllers\PelaksanaanAuditController@create')->middleware(['auth', 'verified'])->name('tambah');
 Route::post('/pelaksanaan/store','App\Http\Controllers\PelaksanaanAuditController@store')->middleware(['auth', 'verified'])->name('tambah2');
+Route::get('/pelaksanaan/edit/{id}','App\Http\Controllers\PelaksanaanAuditController@edit')->middleware(['auth', 'verified'])->name('edit');
+Route::post('/pelaksanaan/update','App\Http\Controllers\PelaksanaanAuditController@update')->middleware(['auth', 'verified'])->name('edit2');
 
 require __DIR__.'/auth.php';
