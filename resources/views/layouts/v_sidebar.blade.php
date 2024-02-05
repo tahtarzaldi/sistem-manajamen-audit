@@ -4,7 +4,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="/audit">
-          <i class="bi bi-grid"></i>
+          <i class="bi bi-arrow-down-circle"></i>
           <span>Perencanaan Audit</span>
         </a>
       </li><!-- End Dashboard Nav -->
