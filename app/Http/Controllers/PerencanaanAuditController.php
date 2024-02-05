@@ -78,9 +78,17 @@ class PerencanaanAuditController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(PerencanaanAudit $perencanaanAudit)
+    public function edit($id)
     {
-        //
+        // mengambil data pegawai berdasarkan id yang dipilih
+        $audit = DB::table('perencanaan_audit')->where('id',$id)->get();
+        $user = auth()->user();
+        
+        // passing data pegawai yang didapat ke view edit.blade.php
+        return view('audit/edit',[
+            'audit' => $audit,
+            'user' => $user
+        ]);
     }
 
     /**
@@ -88,7 +96,19 @@ class PerencanaanAuditController extends Controller
      */
     public function update(Request $request, PerencanaanAudit $perencanaanAudit)
     {
-        //
+        DB::table('perencanaan_audit')->where('id',$request->id)->update([
+            'tujuan_audit' => $request->tujuan_audit,
+            'ruang_lingkup' => $request->ruang_lingkup,
+            'tim_audit' => $request->tim_audit,
+            'tgl_mulai' => date('Y-m-d', strtotime($request->tgl_mulai)),
+            'tgl_selesai' => date('Y-m-d', strtotime($request->tgl_selesai)),
+            'sumber_daya' => $request->sumber_daya,
+            'teknik_audit' => $request->teknik_audit,
+            'status' => $request->status,
+            'catatan' => $request->catatan,
+        ]);
+        // alihkan halaman ke halaman pegawai
+        return redirect('/audit');
     }
 
     /**
