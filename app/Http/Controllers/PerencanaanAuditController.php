@@ -12,7 +12,14 @@ class PerencanaanAuditController extends Controller
      */
     public function index()
     {
-        //
+        $audit = PerencanaanAudit::all();
+        $user = auth()->user();
+        return view('audit/audit',
+            [
+                'user' => $user,
+                'audit' => $audit,
+            ]
+        );
     }
 
     /**
